@@ -48,7 +48,6 @@ def _export_csv(adjustments: Sequence[Adjustment], path: Path) -> None:
 def _export_xlsx(adjustments: Sequence[Adjustment], path: Path) -> None:
     try:
         from openpyxl import Workbook
-        from openpyxl.worksheet.table import Table, TableStyleInfo
     except ImportError as error:
         raise RuntimeError(
             "Para exportar a Excel (.xlsx), instala las dependencias con: "
@@ -70,19 +69,6 @@ def _export_xlsx(adjustments: Sequence[Adjustment], path: Path) -> None:
 
     worksheet.freeze_panes = "A2"
     worksheet.sheet_view.showGridLines = False
-    worksheet.auto_filter.ref = worksheet.dimensions
-
-    # Crear una tabla de Excel facilita filtrar y ordenar los ajustes.
-    table = Table(displayName="TablaAjustes", ref=worksheet.dimensions)
-    table_style = TableStyleInfo(
-        name="TableStyleMedium2",
-        showFirstColumn=False,
-        showLastColumn=False,
-        showRowStripes=True,
-        showColumnStripes=False,
-    )
-    table.tableStyleInfo = table_style
-    worksheet.add_table(table)
 
     widths = {"A": 14, "B": 10, "C": 12, "D": 14, "E": 40}
     for column, width in widths.items():
