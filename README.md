@@ -1,4 +1,8 @@
-# AjustesInventario
+# Automatización de procesos
+
+Este repositorio contiene programas para la evolución de los procesos manuales hacia pipelines para mejorar tiempos y costos en el área administrativa de la panadería.
+
+## Programa 1: AjustesInventario
 
 Programa en Python para convertir `ajustes.txt` en una tabla con las columnas:
 
